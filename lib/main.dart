@@ -4,7 +4,15 @@ void main() => runApp(MaterialApp(
   home: PugalCard(),
 ));
 
-class PugalCard extends StatelessWidget {
+class PugalCard extends StatefulWidget {
+  @override
+  State<PugalCard> createState() => _PugalCardState();
+}
+
+class _PugalCardState extends State<PugalCard> {
+
+  int skillLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +22,15 @@ class PugalCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            skillLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0),
@@ -75,7 +92,7 @@ class PugalCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              '9/10',
+              '${skillLevel}',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontWeight: FontWeight.bold,
